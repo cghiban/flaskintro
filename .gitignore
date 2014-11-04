@@ -4,10 +4,7 @@ __pycache__/
 
 # C extensions
 *.so
-<<<<<<< HEAD
 *.sw?
-=======
->>>>>>> dae93fdd289ccad87866a76a3d095190303f100e
 
 # Distribution / packaging
 .Python
@@ -56,9 +53,6 @@ docs/_build/
 
 # PyBuilder
 target/
-<<<<<<< HEAD
 
 # virtualenv
 vnv/
-=======
->>>>>>> dae93fdd289ccad87866a76a3d095190303f100e
