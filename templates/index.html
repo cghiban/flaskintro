@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="border: 1px solid red;">
+		{% block page %}{{title}}{% endblock %}
+
+		Home page :D
+{#
+  {% block footer %}
+    {{super()}}
+  {% endblock %}
+#}
+  <h3> This is the end of my child template</h3>
+	
+  <small>Current date/time: {{ current_time | datetimefilter }}</small>
+</div>
+{% endblock %}
+
