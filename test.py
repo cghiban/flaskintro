@@ -41,6 +41,14 @@ class FlaskTestCase(unittest.TestCase):
     response = tester.get('/', follow_redirects=True)
     self.assertTrue('Please login' in response.data)
 
-
+  def test_post_show_up(self):
+    tester = app.test_client(self)
+    resp = tester.post(
+        '/login', 
+        data=dict(u='admin', p='admin'), 
+        follow_redirects = True
+    )
+    self.assertIn('Good', resp.data)
+ 
 if __name__ == '__main__':
   unittest.main()

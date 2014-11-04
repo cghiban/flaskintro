@@ -1,10 +1,17 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 import datetime
 from functools import wraps
+from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 app.secret_key = 'ala bala'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+
+# create sqlalchemy db object
+db = SQLAlchemy(app)
+
+from models import *
 
 @app.template_filter()
 def datetimefilter(value, format='%Y/%m/%d %H:%M'):
@@ -30,7 +37,13 @@ def login_required(f):
 @login_required
 def home():
   current_time=datetime.datetime.now()
-  return render_template('index.html', title="Home", current_time = current_time)
+  #posts = models.BlogPost.query.all()
+  posts = db.session.query(BlogPost).all()
+  return render_template('index.html', 
+    title="Home", 
+    current_time = current_time,
+    posts = posts
+  )
 
 
 @app.route('/welcome')

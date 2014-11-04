@@ -3,13 +3,14 @@
 <div style="border: 1px solid red;">
 		{% block page %}{{title}}{% endblock %}
 
-		Home page :D
-{#
-  {% block footer %}
-    {{super()}}
-  {% endblock %}
-#}
   <h3> This is the end of my child template</h3>
+  <h4>Posts</h4>
+  {% for p in posts %}
+  <p>
+    <div><strong>Title</strong>: {{ p.title }}</div>
+    <div><strong>Desc</strong>: {{ p.desc }}</div>
+  </p>
+  {% endfor %}
 	
   <small>Current date/time: {{ current_time | datetimefilter }}</small>
 </div>
