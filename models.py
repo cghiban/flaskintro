@@ -13,5 +13,5 @@ class BlogPost(db.Model):
     self.desc = desc
 
   def __repr__(self):
-    return '<title {}>'.format(self.title)
+    return '<Post {}>'.format(self.title)
   

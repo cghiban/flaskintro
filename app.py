@@ -1,12 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
-import datetime
+import datetime, os
 from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-app.secret_key = 'ala bala'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+# config
+# e.g.: APP_CONFIG=config.DevelopmentConfig 
+app.config.from_object(os.environ['APP_CONFIG'])
 
 # create sqlalchemy db object
 db = SQLAlchemy(app)
@@ -79,4 +80,4 @@ def contact():
 
 
 if __name__ == '__main__':
-  app.run(debug = True)
+  app.run()
