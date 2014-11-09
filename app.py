@@ -2,9 +2,10 @@ from flask import Flask, render_template, redirect, url_for, request, session, f
 import datetime, os
 from functools import wraps
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.bcrypt import Bcrypt
 
 app = Flask(__name__)
-
+bcrypt = Bcrypt(app)
 # config
 # e.g.: APP_CONFIG=config.DevelopmentConfig 
 app.config.from_object(os.environ['APP_CONFIG'])
