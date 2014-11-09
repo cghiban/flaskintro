@@ -14,6 +14,10 @@ app.config.from_object(os.environ['APP_CONFIG'])
 db = SQLAlchemy(app)
 
 from models import *
+from project.users.views import users_blueprint
+
+# register our blueprints
+app.register_blueprint(users_blueprint)
 
 @app.template_filter()
 def datetimefilter(value, format='%Y/%m/%d %H:%M'):
@@ -30,7 +34,7 @@ def login_required(f):
       return f(*args, **kwargs)
     else:
       flash('You need to login first')
-      return redirect(url_for('login'))
+      return redirect(url_for('users.login'))
 
   return wrap
 
@@ -51,25 +55,6 @@ def home():
 @app.route('/welcome')
 def welcome():
   return render_template('welcome.html')
-
-@app.route('/login', methods = ['POST', 'GET'])
-def login():
-  error = None
-  if request.method == 'POST':
-    if request.form['u'] != 'admin' or request.form['p'] != 'admin':
-      error = 'Invalid credentials. Try again'
-    else:
-      session['logged_in'] = True
-      flash("Just logged in")
-      return redirect(url_for('home'))
-  return render_template('login.html', error = error)
-
-@app.route('/logout')
-@login_required
-def logout():
-  session.pop('logged_in', None)
-  flash("Just logged out")
-  return redirect(url_for('welcome'))
 
 @app.route("/about")
 def about():
