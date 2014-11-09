@@ -4,7 +4,9 @@ class BaseConfig(object):
   DEBUG = False
   SECRET_KEY = '\xf8\xcaZ\xa8\xec\xb8 H\xdb+\xbce\x13\x88S?\xe8]@\xa5\x13q1Z'
   #SQLALCHEMY_DATABASE_URI = sqlite:///posts.db
+  #SQLALCHEMY_DATABASE_URI = postgresql://user:pass@localhost/discover_flask_dev
   SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+  #print SQLALCHEMY_DATABASE_URI
 
 class DevelopmentConfig(BaseConfig):
   DEBUG = True
